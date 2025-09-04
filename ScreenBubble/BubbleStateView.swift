@@ -8,20 +8,30 @@
 import SwiftUI
 
 struct BubbleStateView: View {
+    @State private var selectedState: BubbleState = .normal
     
     var body: some View {
         ZStack {
             Image(.bgPhone)
                 .resizable()
                 .scaledToFill()
+                .ignoresSafeArea()
             VStack {
+                Text("静态 UI")
                 HStack(spacing: 12) {
                     BubbleView(state: .normal)
                     BubbleView(state: .inactive)
                 }
+                Text("状态切换")
+                BubbleView(state: selectedState)
+                Picker("选择状态", selection: $selectedState.animation(.easeInOut(duration: 0.3))) {
+                    Text("正常").tag(BubbleState.normal)
+                    Text("透明").tag(BubbleState.inactive)
+                }.pickerStyle(.segmented)
             }
-     
+            .padding(.horizontal)
         }
+        .foregroundStyle(.white)
     }
 }
 
@@ -29,23 +39,19 @@ struct BubbleView: View {
     let state: BubbleState
     
     var body: some View {
-        switch state {
-        case .normal:
-            Image(.bubbleDefautl)
-                .resizable()
-                .frame(width: 56, height: 56)
-        case .inactive:
-            Image(.bubbleDefautl)
-                .resizable()
-                .frame(width: 44, height: 44)
-                .opacity(0.6)
-        }
+        Image(.bubbleDefautl)
+            .resizable()
+            .frame(
+                width: state == .normal ? 56 : 44,
+                height: state == .normal ? 56 : 44
+            )
+            .opacity(state == .normal ? 1.0 : 0.6)
     }
-    
-    enum BubbleState {
-        case normal
-        case inactive
-    }
+}
+
+enum BubbleState {
+    case normal
+    case inactive
 }
 
 
