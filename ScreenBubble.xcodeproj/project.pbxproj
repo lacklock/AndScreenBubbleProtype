@@ -6,17 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		85D1A8682E6ADC1C0058FF3C /* BubbleStateUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8622E6ADC1C0058FF3C /* BubbleStateUIView.swift */; };
+		85D1A8692E6ADC1C0058FF3C /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8632E6ADC1C0058FF3C /* MainScreen.swift */; };
+		85D1A86A2E6ADC1C0058FF3C /* ScreenBubbleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8642E6ADC1C0058FF3C /* ScreenBubbleApp.swift */; };
+		85D1A86B2E6ADC1C0058FF3C /* ScreenBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */; };
+		85D1A86C2E6ADC1C0058FF3C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8662E6ADC1C0058FF3C /* Utils.swift */; };
+		85D1A86D2E6ADC1C0058FF3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D1A8612E6ADC1C0058FF3C /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		85D1A6332E693B900058FF3C /* ScreenBubble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScreenBubble.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		85D1A8612E6ADC1C0058FF3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		85D1A8622E6ADC1C0058FF3C /* BubbleStateUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleStateUIView.swift; sourceTree = "<group>"; };
+		85D1A8632E6ADC1C0058FF3C /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		85D1A8642E6ADC1C0058FF3C /* ScreenBubbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBubbleApp.swift; sourceTree = "<group>"; };
+		85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBubbleView.swift; sourceTree = "<group>"; };
+		85D1A8662E6ADC1C0058FF3C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		85D1A6352E693B900058FF3C /* ScreenBubble */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ScreenBubble;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		85D1A6302E693B900058FF3C /* Frameworks */ = {
@@ -32,7 +39,7 @@
 		85D1A62A2E693B900058FF3C = {
 			isa = PBXGroup;
 			children = (
-				85D1A6352E693B900058FF3C /* ScreenBubble */,
+				85D1A8672E6ADC1C0058FF3C /* ScreenBubble */,
 				85D1A6342E693B900058FF3C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +50,19 @@
 				85D1A6332E693B900058FF3C /* ScreenBubble.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		85D1A8672E6ADC1C0058FF3C /* ScreenBubble */ = {
+			isa = PBXGroup;
+			children = (
+				85D1A8612E6ADC1C0058FF3C /* Assets.xcassets */,
+				85D1A8642E6ADC1C0058FF3C /* ScreenBubbleApp.swift */,
+				85D1A8632E6ADC1C0058FF3C /* MainScreen.swift */,
+				85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */,
+				85D1A8622E6ADC1C0058FF3C /* BubbleStateUIView.swift */,
+				85D1A8662E6ADC1C0058FF3C /* Utils.swift */,
+			);
+			path = ScreenBubble;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,9 +79,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				85D1A6352E693B900058FF3C /* ScreenBubble */,
 			);
 			name = ScreenBubble;
 			packageProductDependencies = (
@@ -109,6 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D1A86D2E6ADC1C0058FF3C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +137,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85D1A8682E6ADC1C0058FF3C /* BubbleStateUIView.swift in Sources */,
+				85D1A8692E6ADC1C0058FF3C /* MainScreen.swift in Sources */,
+				85D1A86A2E6ADC1C0058FF3C /* ScreenBubbleApp.swift in Sources */,
+				85D1A86B2E6ADC1C0058FF3C /* ScreenBubbleView.swift in Sources */,
+				85D1A86C2E6ADC1C0058FF3C /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

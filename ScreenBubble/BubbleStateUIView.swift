@@ -31,6 +31,7 @@ struct BubbleStateUIView: View {
                     Text("透明").tag(BubbleState.inactive)
                     Text("扫描").tag(BubbleState.scan)
                     Text("折叠").tag(BubbleState.fold)
+                    Text("菜单").tag(BubbleState.menu)
                 }.pickerStyle(.segmented)
             }
             .padding(.horizontal)
@@ -39,6 +40,7 @@ struct BubbleStateUIView: View {
     }
 }
 
+/// 悬浮球显示的 UI
 struct BubbleView: View {
     let state: BubbleState
     
@@ -64,18 +66,30 @@ struct BubbleView: View {
                 .opacity(0.7)
                 .frame(width: 32, height: 32)
                 .transition(.blurReplace)
+        default:
+            EmptyView()
         }
     }
 }
 
-enum BubbleState {
-    case normal
-    case inactive
-    case scan
-    case fold
+struct BubbleMenuView: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: 8)
+            .frame(width: 100, height: 160)
+            .foregroundStyle(.black.opacity(0.7))
+    }
 }
-
 
 #Preview {
     BubbleStateUIView()
+}
+
+#Preview("Menu") {
+    ZStack {
+        Image(.bgPhone)
+            .resizable()
+            .scaledToFill()
+            .ignoresSafeArea()
+        BubbleMenuView()
+    }
 }

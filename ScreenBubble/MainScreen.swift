@@ -18,8 +18,10 @@ struct MainScreen: View {
             }
             .navigationDestination(for: AppScreen.self) { screen in
                 switch screen {
-                case .bubbleState:
+                case .bubbleUI:
                     BubbleStateUIView()
+                case .bubbleState:
+                    ScreenBubblePreview()
                 }
             }
         }
@@ -28,12 +30,15 @@ struct MainScreen: View {
 
 
 enum AppScreen: String, Identifiable, CaseIterable {
+    case bubbleUI
     case bubbleState
     
     var title: String {
         switch self {
-        case .bubbleState:
+        case .bubbleUI:
             "悬浮球 UI"
+        case .bubbleState:
+            "悬浮球状态"
         }
     }
 
