@@ -50,10 +50,12 @@ struct BubbleView: View {
                     height: state == .normal ? 56 : 44
                 )
                 .opacity(state == .normal ? 1.0 : 0.6)
+                .transition(.blurReplace)
         case .scan:
             Image(.bubbleScan)
                 .resizable()
                 .frame(width: 44, height: 44)
+                .transition(.blurReplace)
         }
 
     }
