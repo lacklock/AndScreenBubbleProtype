@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BubbleStateView: View {
+struct BubbleStateUIView: View {
     @State private var selectedState: BubbleState = .normal
     
     var body: some View {
@@ -22,6 +22,7 @@ struct BubbleStateView: View {
                     BubbleView(state: .normal)
                     BubbleView(state: .inactive)
                     BubbleView(state: .scan)
+                    BubbleView(state: .fold)
                 }
                 Text("状态切换")
                 BubbleView(state: selectedState)
@@ -29,6 +30,7 @@ struct BubbleStateView: View {
                     Text("正常").tag(BubbleState.normal)
                     Text("透明").tag(BubbleState.inactive)
                     Text("扫描").tag(BubbleState.scan)
+                    Text("折叠").tag(BubbleState.fold)
                 }.pickerStyle(.segmented)
             }
             .padding(.horizontal)
@@ -56,8 +58,13 @@ struct BubbleView: View {
                 .resizable()
                 .frame(width: 44, height: 44)
                 .transition(.blurReplace)
+        case .fold:
+            Circle()
+                .foregroundStyle(.white)
+                .opacity(0.7)
+                .frame(width: 32, height: 32)
+                .transition(.blurReplace)
         }
-
     }
 }
 
@@ -65,9 +72,10 @@ enum BubbleState {
     case normal
     case inactive
     case scan
+    case fold
 }
 
 
 #Preview {
-    BubbleStateView()
+    BubbleStateUIView()
 }

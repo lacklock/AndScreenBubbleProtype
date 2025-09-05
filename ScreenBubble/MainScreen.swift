@@ -19,7 +19,7 @@ struct MainScreen: View {
             .navigationDestination(for: AppScreen.self) { screen in
                 switch screen {
                 case .bubbleState:
-                    BubbleStateView()
+                    BubbleStateUIView()
                 }
             }
         }
