@@ -54,6 +54,7 @@ struct ScreenBubbleView: View {
 
 struct ScreenBubblePreview: View {
     @StateObject private var stateManager = BubbleStateManager()
+    @State private var isAutoState: Bool = false
 
     var body: some View {
         ZStack {
@@ -63,20 +64,27 @@ struct ScreenBubblePreview: View {
                     .scaledToFill()
                     .ignoresSafeArea()
             }
-            VStack {
+            VStack(spacing: 16) {
                 Spacer()
                 ScreenBubbleView(stateManager: stateManager)
                 Spacer()
+                Button("菜单模式切换") {
+                    withAnimation {
+                        stateManager.toggleMenuState()
+                    }
+                }
+                .buttonStyle(.bordered)
                 HStack {
-                    Button("菜单切换") {
-                        withAnimation {
-                            stateManager.toggleMenuState()
-                        }
+                    Toggle("开启自动折叠", isOn: $isAutoState)
+                        .frame(width: 180)
+                        .padding(.trailing, 32)
+                    Button("点击事件") {
+                        stateManager.updateEvent(.tap)
                     }
                     .buttonStyle(.bordered)
                 }
             }
-            .padding(.bottom, 16)
+            .padding(16)
             .foregroundStyle(.white)
         }
     }
