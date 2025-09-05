@@ -21,12 +21,14 @@ struct BubbleStateView: View {
                 HStack(spacing: 12) {
                     BubbleView(state: .normal)
                     BubbleView(state: .inactive)
+                    BubbleView(state: .scan)
                 }
                 Text("状态切换")
                 BubbleView(state: selectedState)
                 Picker("选择状态", selection: $selectedState.animation(.easeInOut(duration: 0.3))) {
                     Text("正常").tag(BubbleState.normal)
                     Text("透明").tag(BubbleState.inactive)
+                    Text("扫描").tag(BubbleState.scan)
                 }.pickerStyle(.segmented)
             }
             .padding(.horizontal)
@@ -39,19 +41,28 @@ struct BubbleView: View {
     let state: BubbleState
     
     var body: some View {
-        Image(.bubbleDefautl)
-            .resizable()
-            .frame(
-                width: state == .normal ? 56 : 44,
-                height: state == .normal ? 56 : 44
-            )
-            .opacity(state == .normal ? 1.0 : 0.6)
+        switch state {
+        case .normal, .inactive:
+            Image(.bubbleDefautl)
+                .resizable()
+                .frame(
+                    width: state == .normal ? 56 : 44,
+                    height: state == .normal ? 56 : 44
+                )
+                .opacity(state == .normal ? 1.0 : 0.6)
+        case .scan:
+            Image(.bubbleScan)
+                .resizable()
+                .frame(width: 44, height: 44)
+        }
+
     }
 }
 
 enum BubbleState {
     case normal
     case inactive
+    case scan
 }
 
 
