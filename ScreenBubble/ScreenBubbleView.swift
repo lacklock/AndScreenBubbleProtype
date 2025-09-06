@@ -25,10 +25,17 @@ class BubbleStateManager: ObservableObject {
     @Published var state: BubbleState = .normal
     private var gestureEvent: BubbleGestureEvent? = nil
     // 是否开启自动折叠状态
-    @State var isAutoFold: Bool = false
+    var isAutoFold: Bool = false
+    // 添加定时器引用
+    private var inactiveTimer: DispatchWorkItem?
+    private var foldTimer: DispatchWorkItem?
 
     func updateEvent(_ event: BubbleGestureEvent) {
         gestureEvent = event
+        if event == .tap {
+            stopAutoFold()
+            state = .normal
+        }
     }
     
     func toggleMenuState() {
@@ -36,6 +43,41 @@ class BubbleStateManager: ObservableObject {
             self.state = .normal
         } else {
             self.state = .menu
+        }
+    }
+
+    private func stopAutoFold() {
+        isAutoFold = false
+        inactiveTimer?.cancel()
+        foldTimer?.cancel()
+        inactiveTimer = nil
+        foldTimer = nil
+    }
+
+    func startAutoFold() {
+        isAutoFold = true
+        
+        // 取消之前的定时器（如果存在）
+        inactiveTimer?.cancel()
+        foldTimer?.cancel()
+        
+        // 创建新的定时器
+        inactiveTimer = DispatchWorkItem { [weak self] in
+            guard let self = self, self.isAutoFold else { return }
+            self.state = .inactive
+        }
+        
+        foldTimer = DispatchWorkItem { [weak self] in
+            guard let self = self, self.isAutoFold else { return }
+            self.state = .fold
+        }
+        
+        // 自动折叠：3秒后进入 inactive，再 3 秒后进入 fold
+        if let inactiveTimer = inactiveTimer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: inactiveTimer)
+        }
+        if let foldTimer = foldTimer {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: foldTimer)
         }
     }
 }
@@ -56,6 +98,7 @@ struct ScreenBubbleView: View {
 
 struct ScreenBubblePreview: View {
     @StateObject private var stateManager = BubbleStateManager()
+    @State private var isAutoFoldState: Bool = false
 
     var body: some View {
         ZStack {
@@ -76,9 +119,14 @@ struct ScreenBubblePreview: View {
                 }
                 .buttonStyle(.bordered)
                 HStack {
-                    Toggle("开启自动折叠", isOn: $stateManager.isAutoFold)
+                    Toggle("开启自动折叠", isOn: $isAutoFoldState)
                         .frame(width: 180)
                         .padding(.trailing, 32)
+                        .onChange(of: isAutoFoldState) {
+                            if isAutoFoldState {
+                                stateManager.startAutoFold()
+                            }
+                        }
                     Button("点击事件") {
                         stateManager.updateEvent(.tap)
                     }
