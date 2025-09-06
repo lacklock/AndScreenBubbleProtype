@@ -29,20 +29,31 @@ class BubbleStateManager: ObservableObject {
     // 添加定时器引用
     private var inactiveTimer: DispatchWorkItem?
     private var foldTimer: DispatchWorkItem?
+    
+    // 添加动画控制方法
+    func setState(_ newState: BubbleState, animated: Bool = true) {
+        if animated {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.state = newState
+            }
+        } else {
+            self.state = newState
+        }
+    }
 
     func updateEvent(_ event: BubbleGestureEvent) {
         gestureEvent = event
         if event == .tap {
-            stopAutoFold()
-            state = .normal
+            isAutoFold = false
+            setState(.normal) // 使用新的动画方法
         }
     }
     
     func toggleMenuState() {
         if state == .menu {
-            self.state = .normal
+            setState(.normal)
         } else {
-            self.state = .menu
+            setState(.menu)
         }
     }
 
@@ -64,12 +75,12 @@ class BubbleStateManager: ObservableObject {
         // 创建新的定时器
         inactiveTimer = DispatchWorkItem { [weak self] in
             guard let self = self, self.isAutoFold else { return }
-            self.state = .inactive
+            self.setState(.inactive) // 使用动画方法
         }
         
         foldTimer = DispatchWorkItem { [weak self] in
             guard let self = self, self.isAutoFold else { return }
-            self.state = .fold
+            self.setState(.fold) // 使用动画方法
         }
         
         // 自动折叠：3秒后进入 inactive，再 3 秒后进入 fold
