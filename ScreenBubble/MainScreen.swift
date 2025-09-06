@@ -22,6 +22,8 @@ struct MainScreen: View {
                     BubbleStateUIView()
                 case .bubbleState:
                     ScreenBubblePreview()
+                case .panBubble:
+                    PanBubbleView()
                 }
             }
         }
@@ -32,6 +34,7 @@ struct MainScreen: View {
 enum AppScreen: String, Identifiable, CaseIterable {
     case bubbleUI
     case bubbleState
+    case panBubble
     
     var title: String {
         switch self {
@@ -39,6 +42,8 @@ enum AppScreen: String, Identifiable, CaseIterable {
             "悬浮球 UI"
         case .bubbleState:
             "悬浮球状态"
+        case .panBubble:
+            "拖动 & 位置"
         }
     }
 

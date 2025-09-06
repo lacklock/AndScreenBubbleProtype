@@ -21,9 +21,16 @@ enum BubbleGestureEvent {
     case panEnd
 }
 
+enum BubblePostion {
+    case fixed
+    case floating
+}
+
 class BubbleStateManager: ObservableObject {
     @Published var state: BubbleState = .normal
+    @Published var position: BubblePostion = .floating
     private var gestureEvent: BubbleGestureEvent? = nil
+    
     // 是否开启自动折叠状态
     var isAutoFold: Bool = false
     // 添加定时器引用

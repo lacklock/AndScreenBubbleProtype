@@ -13,6 +13,7 @@
 		85D1A86B2E6ADC1C0058FF3C /* ScreenBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */; };
 		85D1A86C2E6ADC1C0058FF3C /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A8662E6ADC1C0058FF3C /* Utils.swift */; };
 		85D1A86D2E6ADC1C0058FF3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D1A8612E6ADC1C0058FF3C /* Assets.xcassets */; };
+		85D1A86F2E6C273A0058FF3C /* PanBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D1A86E2E6C273A0058FF3C /* PanBubbleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		85D1A8642E6ADC1C0058FF3C /* ScreenBubbleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBubbleApp.swift; sourceTree = "<group>"; };
 		85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenBubbleView.swift; sourceTree = "<group>"; };
 		85D1A8662E6ADC1C0058FF3C /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		85D1A86E2E6C273A0058FF3C /* PanBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanBubbleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +60,9 @@
 				85D1A8612E6ADC1C0058FF3C /* Assets.xcassets */,
 				85D1A8642E6ADC1C0058FF3C /* ScreenBubbleApp.swift */,
 				85D1A8632E6ADC1C0058FF3C /* MainScreen.swift */,
-				85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */,
 				85D1A8622E6ADC1C0058FF3C /* BubbleStateUIView.swift */,
+				85D1A8652E6ADC1C0058FF3C /* ScreenBubbleView.swift */,
+				85D1A86E2E6C273A0058FF3C /* PanBubbleView.swift */,
 				85D1A8662E6ADC1C0058FF3C /* Utils.swift */,
 			);
 			path = ScreenBubble;
@@ -139,6 +142,7 @@
 			files = (
 				85D1A8682E6ADC1C0058FF3C /* BubbleStateUIView.swift in Sources */,
 				85D1A8692E6ADC1C0058FF3C /* MainScreen.swift in Sources */,
+				85D1A86F2E6C273A0058FF3C /* PanBubbleView.swift in Sources */,
 				85D1A86A2E6ADC1C0058FF3C /* ScreenBubbleApp.swift in Sources */,
 				85D1A86B2E6ADC1C0058FF3C /* ScreenBubbleView.swift in Sources */,
 				85D1A86C2E6ADC1C0058FF3C /* Utils.swift in Sources */,
