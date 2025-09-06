@@ -83,12 +83,12 @@ class BubbleStateManager: ObservableObject {
             self.setState(.fold) // 使用动画方法
         }
         
-        // 自动折叠：3秒后进入 inactive，再 3 秒后进入 fold
+        // 自动折叠：2秒后进入 inactive，再 3 秒后进入 fold
         if let inactiveTimer = inactiveTimer {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: inactiveTimer)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: inactiveTimer)
         }
         if let foldTimer = foldTimer {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: foldTimer)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: foldTimer)
         }
     }
 }
@@ -109,7 +109,6 @@ struct ScreenBubbleView: View {
 
 struct ScreenBubblePreview: View {
     @StateObject private var stateManager = BubbleStateManager()
-    @State private var isAutoFoldState: Bool = false
 
     var body: some View {
         ZStack {
@@ -130,14 +129,12 @@ struct ScreenBubblePreview: View {
                 }
                 .buttonStyle(.bordered)
                 HStack {
-                    Toggle("开启自动折叠", isOn: $isAutoFoldState)
-                        .frame(width: 180)
-                        .padding(.trailing, 32)
-                        .onChange(of: isAutoFoldState) {
-                            if isAutoFoldState {
-                                stateManager.startAutoFold()
-                            }
-                        }
+                    Button("开启自动折叠") {
+                        stateManager.startAutoFold()
+                    }
+                    .buttonStyle(.bordered)
+                    .padding(.trailing, 32)
+           
                     Button("点击事件") {
                         stateManager.updateEvent(.tap)
                     }
