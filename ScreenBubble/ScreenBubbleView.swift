@@ -24,6 +24,8 @@ enum BubbleGestureEvent {
 class BubbleStateManager: ObservableObject {
     @Published var state: BubbleState = .normal
     private var gestureEvent: BubbleGestureEvent? = nil
+    // 是否开启自动折叠状态
+    @State var isAutoFold: Bool = false
 
     func updateEvent(_ event: BubbleGestureEvent) {
         gestureEvent = event
@@ -54,7 +56,6 @@ struct ScreenBubbleView: View {
 
 struct ScreenBubblePreview: View {
     @StateObject private var stateManager = BubbleStateManager()
-    @State private var isAutoState: Bool = false
 
     var body: some View {
         ZStack {
@@ -75,7 +76,7 @@ struct ScreenBubblePreview: View {
                 }
                 .buttonStyle(.bordered)
                 HStack {
-                    Toggle("开启自动折叠", isOn: $isAutoState)
+                    Toggle("开启自动折叠", isOn: $stateManager.isAutoFold)
                         .frame(width: 180)
                         .padding(.trailing, 32)
                     Button("点击事件") {
