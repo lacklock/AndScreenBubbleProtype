@@ -26,7 +26,7 @@ struct ScreenBubbleView: View {
             }
             .position(stateManager.currentPosition)
             .gesture(
-                DragGesture(coordinateSpace: .global)
+                DragGesture(coordinateSpace: .local)
                     .onChanged { value in
                         if !stateManager.isDragging {
                             print("pan start")
