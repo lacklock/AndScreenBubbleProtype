@@ -19,13 +19,13 @@ struct BubbleStateUIView: View {
             VStack {
                 Text("静态 UI")
                 HStack(spacing: 12) {
-                    BubbleView(state: .normal)
-                    BubbleView(state: .inactive)
-                    BubbleView(state: .scan)
-                    BubbleView(state: .fold)
+                    BubbleIconView(state: .normal)
+                    BubbleIconView(state: .inactive)
+                    BubbleIconView(state: .scan)
+                    BubbleIconView(state: .fold)
                 }
                 Text("状态切换")
-                BubbleView(state: selectedState)
+                BubbleIconView(state: selectedState)
                 Picker("选择状态", selection: $selectedState.animation(.easeInOut(duration: 0.3))) {
                     Text("正常").tag(BubbleState.normal)
                     Text("透明").tag(BubbleState.inactive)
@@ -40,8 +40,22 @@ struct BubbleStateUIView: View {
     }
 }
 
-/// 悬浮球显示的 UI
+/// 悬浮球对外公开所有状态的 UI
 struct BubbleView: View {
+    let state: BubbleState
+    
+    var body: some View {
+        if state == .menu {
+            BubbleMenuView()
+                .transition(.blurReplace)
+        } else {
+            BubbleIconView(state: state)
+        }
+    }
+}
+
+/// 悬浮球基础球形 UI
+struct BubbleIconView: View {
     let state: BubbleState
     
     var body: some View {

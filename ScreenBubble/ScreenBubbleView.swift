@@ -7,39 +7,31 @@
 
 import SwiftUI
 
-
-
 /// 管理悬浮球交互和 UI
 struct ScreenBubbleView: View {
     @ObservedObject var stateManager: BubbleStateManager
     @State private var screenSize: CGSize = .zero
-
+    
     var body: some View {
         GeometryReader { geometry in
-            Group {
-                if stateManager.state == .menu {
-                    BubbleMenuView()
-                        .transition(.blurReplace)
-                } else {
-                    BubbleView(state: stateManager.state)
-                }
-            }
-            .position(stateManager.currentPosition)
-            .gesture(
-                DragGesture(coordinateSpace: .local)
-                    .onChanged { value in
-                        if !stateManager.isDragging {
-                            print("pan start")
-                            stateManager.startDragging()
+            BubbleView(state: stateManager.state)
+                .position(stateManager.currentPosition)
+                .id("bubble-view") // 添加固定的 id
+                .gesture(
+                    DragGesture(coordinateSpace: .local)
+                        .onChanged { value in
+                            if !stateManager.isDragging {
+                                print("pan start")
+                                stateManager.startDragging()
+                            }
+                            stateManager.updatePosition(value.location)
+                            print("panLoaction: \(value.location)")
                         }
-                        stateManager.updatePosition(value.location)
-                        print("panLoaction: \(value.location)")
-                    }
-                    .onEnded { _ in
-                        print("pan end")
-                        stateManager.endDragging(screenSize: geometry.size)
-                    }
-            )
+                        .onEnded { _ in
+                            print("pan end")
+                            stateManager.endDragging(screenSize: geometry.size)
+                        }
+                )
             .simultaneousGesture(
                 TapGesture()
                     .onEnded {
