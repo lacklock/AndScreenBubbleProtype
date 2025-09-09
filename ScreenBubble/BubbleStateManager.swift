@@ -18,6 +18,7 @@ enum BubbleGestureEvent {
     case tap
     case panStart
     case panEnd
+    case longPress
 }
 
 enum BubblePostion {
@@ -56,6 +57,8 @@ class BubbleStateManager: ObservableObject {
         if event == .tap {
             isAutoFold = false
             setState(.normal) // 使用新的动画方法
+        } else if event == .longPress {
+            print("Long press detected")
         }
     }
     

@@ -48,6 +48,14 @@ struct GestureScreen: View {
                                 self.msg = "Tap \(String(format: "%.3f", Date().timeIntervalSince(startDate)))"
                             }
                     )
+                    .simultaneousGesture(
+                        LongPressGesture(minimumDuration: 1.0)
+                            .onEnded { _ in
+                                print("Long press end")
+                                self.msg = "Long Press \(String(format: "%.3f", Date().timeIntervalSince(startDate)))"
+                                stateManager.updateEvent(.longPress)
+                            }
+                    )
             }
         }
     }
