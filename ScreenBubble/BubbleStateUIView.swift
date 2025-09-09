@@ -64,15 +64,15 @@ struct BubbleIconView: View {
             Image(.bubbleDefautl)
                 .resizable()
                 .frame(
-                    width: state == .normal ? 56 : 44,
-                    height: state == .normal ? 56 : 44
+                    width: state == .normal ? 48 : 40,
+                    height: state == .normal ? 48 : 40
                 )
                 .opacity(state == .normal ? 1.0 : 0.6)
                 .transition(.blurReplace)
         case .scan:
             Image(.bubbleScan)
                 .resizable()
-                .frame(width: 44, height: 44)
+                .frame(width: 48, height: 48)
                 .transition(.blurReplace)
         case .fold:
             Circle()

@@ -19,6 +19,7 @@ enum BubbleGestureEvent {
     case panStart
     case panEnd
     case longPress
+    case doubleTap
 }
 
 enum BubblePostion {
@@ -59,6 +60,10 @@ class BubbleStateManager: ObservableObject {
             setState(.normal) // 使用新的动画方法
         } else if event == .longPress {
             print("Long press detected")
+            // 可以在这里添加长按后的具体逻辑，比如切换到菜单状态
+        } else if event == .doubleTap {
+            print("Double tap detected")
+            // 可以在这里添加双击后的具体逻辑，比如切换到扫描状态
         }
     }
     
